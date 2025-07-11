@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fruit Category Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="fruitForm">
+    <label for="fruit">Enter a fruit name:</label><br>
+    <input type="text" id="fruit" name="fruit" placeholder="e.g., Apple">
+    <button type="submit">Check Category</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById("fruitForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form reload
+
+      const fruitInput = document.getElementById("fruit").value.trim().toLowerCase();
+      const resultDiv = document.getElementById("result");
+      let category;
+
+      switch (fruitInput) {
+        case "orange":
+        case "lemon":
+        case "lime":
+        case "grapefruit":
+          category = "Citrus Fruit";
+          break;
+        case "strawberry":
+        case "blueberry":
+        case "raspberry":
+          category = "Berry";
+          break;
+        case "apple":
+        case "pear":
+        case "quince":
+          category = "Pome Fruit";
+          break;
+        case "banana":
+        case "plantain":
+          category = "Tropical Fruit";
+          break;
+        case "peach":
+        case "plum":
+        case "cherry":
+          category = "Stone Fruit";
+          break;
+        default:
+          category = "Unknown or Not a Fruit I Know";
+      }
+
+      resultDiv.textContent = `Category: ${category}`;
+    });
+  </script>
+
+</body>
+</html>
