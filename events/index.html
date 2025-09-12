@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+<body>
+    <button onmouseout="doGreen()"onmouseover="doYellow()">Click me to Salam you</button>
+    <br />
+    <button onclick="doWhite">Make BG white</button>
+    <script>
+        function doYellow() {
+            document.body.style.backgroundColor = "Yellow";
+        }
+           function doGreen() {
+            document.body.style.backgroundColor = "green";
+           }
+
+            function doWhite() {
+            document.body.style.backgroundColor = "white";
+            }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Advanced Traffic Light Simulation</title>
+  <style>
+    body {
+      background: #1b1b1b;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .traffic-light {
+      background: #222;
+      border-radius: 20px;
+      padding: 20px;
+      width: 100px;
+      box-shadow: 0 0 20px #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .light {
+      width: 60px;
+      height: 60px;
+      margin: 10px 0;
+      border-radius: 50%;
+      background-color: #111;
+      transition: 0.4s;
+    }
+
+    .on.red {
+      background-color: red;
+      box-shadow: 0 0 25px red;
+    }
+
+    .on.yellow {
+      background-color: yellow;
+      box-shadow: 0 0 25px yellow;
+    }
+
+    .on.green {
+      background-color: limegreen;
+      box-shadow: 0 0 25px limegreen;
+    }
+
+    .countdown {
+      margin-top: 10px;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .pedestrian-signal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: #2a2a2a;
+      border-radius: 15px;
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      width: 120px;
+    }
+
+    .pedestrian-indicator {
+      font-size: 2.5rem;
+      margin: 10px 0;
+    }
+
+    .walk {
+      color: limegreen;
+    }
+
+    .dont-walk {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="traffic-light">
+      <div class="light red" id="red"></div>
+      <div class="light yellow" id="yellow"></div>
+      <div class="light green" id="green"></div>
+      <div class="countdown" id="countdown">3</div>
+    </div>
+
+    <div class="pedestrian-signal">
+      Pedestrian Signal
+      <div id="pedestrian-indicator" class="pedestrian-indicator dont-walk">🚫</div>
+      <div id="pedestrian-text">Don't Walk</div>
+    </div>
+  </div>
+
+  <script>
+    const red = document.getElementById("red");
+    const yellow = document.getElementById("yellow");
+    const green = document.getElementById("green");
+    const countdown = document.getElementById("countdown");
+
+    const pedestrianIndicator = document.getElementById("pedestrian-indicator");
+    const pedestrianText = document.getElementById("pedestrian-text");
+
+    const states = [
+      { light: "red", duration: 5, pedestrian: "walk" },
+      { light: "green", duration: 5, pedestrian: "dont-walk" },
+      { light: "yellow", duration: 2, pedestrian: "dont-walk" }
+    ];
+
+    let current = 0;
+    let timeLeft = states[current].duration;
+
+    function updateUI() {
+      red.classList.remove("on");
+      yellow.classList.remove("on");
+      green.classList.remove("on");
+
+      const state = states[current];
+      timeLeft = state.duration;
+
+      if (state.light === "red") red.classList.add("on");
+      else if (state.light === "yellow") yellow.classList.add("on");
+      else if (state.light === "green") green.classList.add("on");
+
+      updatePedestrianSignal(state.pedestrian);
+    }
+
+    function updatePedestrianSignal(status) {
+      if (status === "walk") {
+        pedestrianIndicator.textContent = "🚶";
+        pedestrianIndicator.classList.remove("dont-walk");
+        pedestrianIndicator.classList.add("walk");
+        pedestrianText.textContent = "Walk";
+      } else {
+        pedestrianIndicator.textContent = "🚫";
+        pedestrianIndicator.classList.remove("walk");
+        pedestrianIndicator.classList.add("dont-walk");
+        pedestrianText.textContent = "Don't Walk";
+      }
+    }
+
+    function tick() {
+      countdown.textContent = timeLeft;
+      timeLeft--;
+
+      if (timeLeft < 0) {
+        current = (current + 1) % states.length;
+        updateUI();
+      }
+    }
+
+    updateUI();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>

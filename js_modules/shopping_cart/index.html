@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shopping Cart Modules Example</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 30px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    #products {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    #products button {
+      background-color: #3498db;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 3px 6px rgba(52, 152, 219, 0.4);
+    }
+
+    #products button:hover {
+      background-color: #2980b9;
+    }
+
+    #cart {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    #cart h2 {
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      color: #2980b9;
+      text-align: center;
+    }
+
+    #cart-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 20px;
+      min-height: 80px;
+    }
+
+    #cart-list li {
+      padding: 8px 12px;
+      border-bottom: 1px solid #eee;
+      font-size: 18px;
+    }
+
+    #cart-list li:last-child {
+      border-bottom: none;
+    }
+
+    #total {
+      font-size: 20px;
+      color: #27ae60;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+
+  <div id="products">
+    <button data-product-id="1">Add Apple ($0.5)</button>
+    <button data-product-id="2">Add Banana ($0.3)</button>
+    <button data-product-id="3">Add Orange ($0.7)</button>
+  </div>
+
+  <div id="cart">
+    <h2>Cart Contents</h2>
+    <ul id="cart-list"></ul>
+    <p><strong>Total: $<span id="total">0.00</span></strong></p>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
+
+
+
+

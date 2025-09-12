@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Types Demo</title>
+  <style>
+    .hover-box {
+      width: 200px;
+      height: 100px;
+      background-color: lightblue;
+      margin-bottom: 10px;
+      text-align: center;
+      line-height: 100px;
+      transition: 0.3s;
+    }
+  </style>
+</head>
+<body onload="handleLoad()">
+  <h1>JavaScript Event Types Demo</h1>
+
+  <!-- onclick -->
+  <button onclick="handleClick()">Click Me (onclick)</button>
+  <br><br>
+
+  <!-- onchange -->
+  <label>Select a color: 
+    <select onchange="handleChange(event)">
+      <option value="">--Choose--</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Green">Green</option>
+    </select>
+  </label>
+  <br><br>
+
+  <!-- onmouseover and onmouseout -->
+  <div class="hover-box" onmouseover="handleMouseOver(this)" onmouseout="handleMouseOut(this)">
+    Hover over me
+  </div>
+
+  <!-- onkeydown and onkeyup -->
+  <label>Type something: 
+    <input type="text" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUp(event)">
+  </label>
+  <br><br>
+
+  <!-- onfocus and onblur -->
+  <label>Focus/Blur Input: 
+    <input type="text" onfocus="handleFocus(this)" onblur="handleBlur(this)">
+  </label>
+  <br><br>
+
+  <!-- onsubmit -->
+  <form onsubmit="handleSubmit(event)">
+    <label>Submit this form: <input type="text" name="name" required></label>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function handleLoad() {
+      console.log("Page has loaded (onload)");
+    }
+
+    function handleClick() {
+      alert("Button was clicked (onclick)");
+    }
+
+    function handleChange(event) {
+      alert("You selected: " + event.target.value + " (onchange)");
+    }
+
+    function handleMouseOver(el) {
+      el.style.backgroundColor = "lightgreen";
+      el.textContent = "Mouse is over me! (onmouseover)";
+    }
+
+    function handleMouseOut(el) {
+      el.style.backgroundColor = "lightblue";
+      el.textContent = "Hover over me";
+    }
+
+    function handleKeyDown(event) {
+      console.log("Key down: " + event.key + " (onkeydown)");
+    }
+
+    function handleKeyUp(event) {
+      console.log("Key up: " + event.key + " (onkeyup)");
+    }
+
+    function handleFocus(el) {
+      el.style.backgroundColor = "lightyellow";
+      console.log("Input focused (onfocus)");
+    }
+
+    function handleBlur(el) {
+      el.style.backgroundColor = "";
+      console.log("Input lost focus (onblur)");
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault(); // Prevent actual form submission
+      alert("Form submitted! (onsubmit)");
+    }
+  </script>
+</body>
+</html>
